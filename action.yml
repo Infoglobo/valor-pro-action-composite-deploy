@@ -1,0 +1,38 @@
+name: Composite Deploy
+
+inputs:
+  custom-scripts:
+    description: 'Scripts personalizados para executar durante o deploy'
+    required: false
+  kube_config:
+    description: 'Nome da variável de ambiente com o kubeconfig correspondente ao ambiente'
+    required: true
+  namespace:
+    description: 'Namespace Kubernetes onde implantar a aplicação'
+    required: true
+  custom_properties_domain:
+    description: 'Domínio personalizado para as propriedades de configuração na execução do custom-properties.sh'
+    required: true
+  resourceInstance:
+    description: 'ResourceInstance name in the management api'
+  resourceInstance3_values:
+    description: 'list of json files to be downloaded from resourceInstance values separated by commas'
+
+
+jobs:
+  composite-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set custom properties
+        run:  bash enviroments/scripts/custom-properties.sh ${{ custom_properties_domain }}
+      - name: Get configs from managment-api
+        uses: Infoglobo/valor-pro-action-get-config@main
+        with:
+          resourceInstance:  ${{ inputs.resourceInstance }}
+          resourceInstance_values: ${{ inputs.resourceInstance_values }}
+      - name: Deploy Application
+        uses: Infoglobo/valor-pro-action-deploy@main
+        with:
+          kube_config: ${{ env.ACTIVE_KUBE_CONFIG }}
+          slack_webhook_url: ${{ secrets.VALOR_PRO_SLACK_WEBHOOK_URL }}
+          namespace: ${{ inputs.namespace }}
