@@ -19,20 +19,19 @@ inputs:
     description: 'list of json files to be downloaded from resourceInstance values separated by commas'
 
 
-jobs:
-  composite-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: set custom properties
-        run:  bash enviroments/scripts/custom-properties.sh ${{ custom_properties_domain }}
-      - name: Get configs from managment-api
-        uses: Infoglobo/valor-pro-action-get-config@main
-        with:
-          resourceInstance:  ${{ inputs.resourceInstance }}
-          resourceInstance_values: ${{ inputs.resourceInstance_values }}
-      - name: Deploy Application
-        uses: Infoglobo/valor-pro-action-deploy@main
-        with:
-          kube_config: ${{ env.ACTIVE_KUBE_CONFIG }}
-          slack_webhook_url: ${{ secrets.VALOR_PRO_SLACK_WEBHOOK_URL }}
-          namespace: ${{ inputs.namespace }}
+runs:
+  using: "composite"
+  steps:
+    - name: set custom properties
+      run:  bash enviroments/scripts/custom-properties.sh ${{ inputs.custom_properties_domain }}
+    - name: Get configs from managment-api
+      uses: Infoglobo/valor-pro-action-get-config@main
+      with:
+        resourceInstance:  ${{ inputs.resourceInstance }}
+        resourceInstance_values: ${{ inputs.resourceInstance_values }}
+    - name: Deploy Application
+      uses: Infoglobo/valor-pro-action-deploy@main
+      with:
+        kube_config: ${{ env.ACTIVE_KUBE_CONFIG }}
+        slack_webhook_url: ${{ secrets.VALOR_PRO_SLACK_WEBHOOK_URL }}
+        namespace: ${{ inputs.namespace }}
