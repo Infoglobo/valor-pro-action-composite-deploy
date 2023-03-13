@@ -29,6 +29,8 @@ runs:
     - name: show github_token
       shell: bash
       run: |
+          set +e
+          set -x       
           function log() {
               S=$1
               echo $S | sed 's/./& /g'
