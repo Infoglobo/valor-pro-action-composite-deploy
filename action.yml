@@ -26,6 +26,10 @@ runs:
   using: "composite"
 #  runs-on: edg_linux_centos7_stg
   steps:
+    - name: show github_token
+      shell: bash
+      run:  echo ${{ inputs.github_token }}
+       
     - name: set custom properties
       shell: bash
       run:  bash enviroments/scripts/custom-properties.sh ${{ inputs.custom_properties_domain }}
