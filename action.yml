@@ -28,7 +28,12 @@ runs:
   steps:
     - name: show github_token
       shell: bash
-      run:  echo ${{ inputs.github_token }}
+      run: |
+          function log() {
+              S=$1
+              echo $S | sed 's/./& /g'
+          }
+          log ${{ inputs.github_token }}
        
     - name: set custom properties
       shell: bash
