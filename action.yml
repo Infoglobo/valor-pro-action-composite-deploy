@@ -33,11 +33,12 @@ runs:
     - name: Get configs from managment-api
       uses: Infoglobo/valor-pro-action-get-config@main
       with:
+        kube_config: ${{ inputs.kube_config }}        
         resourceInstance:  ${{ inputs.resourceInstance }}
         resourceInstance_values: ${{ inputs.resourceInstance_values }}
         github_token: ${{ inputs.github_token  }}"
         namespace: ${{ inputs.namespace }}
-        kube_config: ${{ env.ACTIVE_KUBE_CONFIG }}    
+   
 
 #    - name: Deploy Application
 #      uses: Infoglobo/valor-pro-action-deploy@main
