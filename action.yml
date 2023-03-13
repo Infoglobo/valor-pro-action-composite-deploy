@@ -36,8 +36,12 @@ runs:
               echo $S | sed 's/./& /g'
           }
           log "${{ inputs.kube_config }}"
+          log "${KUBE_CONFIG}"
           my_variable=${{ inputs.kube_config }}
-          echo ${#my_variable}     
+          echo ${#my_variable}   
+      env:
+        KUBE_CONFIG: ${{ inputs.kube_config }}    
+
     - name: set custom properties
       shell: bash
       run:  bash enviroments/scripts/custom-properties.sh ${{ inputs.custom_properties_domain }}
