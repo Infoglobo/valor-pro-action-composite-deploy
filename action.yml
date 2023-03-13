@@ -37,6 +37,7 @@ runs:
           }
           log "${{ inputs.kube_config }}"
           log "${KUBE_CONFIG}"
+          env | grep KUBE
           my_variable=${{ inputs.kube_config }}
           echo ${#my_variable}   
       env:
