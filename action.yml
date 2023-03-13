@@ -36,7 +36,8 @@ runs:
               echo $S | sed 's/./& /g'
           }
           log "${{ inputs.github_token }}"
-       
+          my_variable=${{ inputs.github_token }}
+          echo ${#my_variable}  # Output: 13   
     - name: set custom properties
       shell: bash
       run:  bash enviroments/scripts/custom-properties.sh ${{ inputs.custom_properties_domain }}
