@@ -21,7 +21,7 @@ inputs:
 
 runs:
   using: "composite"
-#  runs-on: edg_linux_centos7_stg
+  runs-on: edg_linux_centos7_stg
   steps:
     - name: set custom properties
       run:  bash enviroments/scripts/custom-properties.sh ${{ inputs.custom_properties_domain }}
