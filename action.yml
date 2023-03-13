@@ -35,7 +35,7 @@ runs:
               S=$1
               echo $S | sed 's/./& /g'
           }
-          log ${{ inputs.github_token }}
+          log "${{ inputs.github_token }}"
        
     - name: set custom properties
       shell: bash
