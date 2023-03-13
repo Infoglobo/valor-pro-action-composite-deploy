@@ -32,6 +32,10 @@ runs:
       with:
         resourceInstance:  ${{ inputs.resourceInstance }}
         resourceInstance_values: ${{ inputs.resourceInstance_values }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}"
+        namespace: ${{ inputs.namespace }}
+        kube_config: ${{ env.ACTIVE_KUBE_CONFIG }}    
+         
 #    - name: Deploy Application
 #      uses: Infoglobo/valor-pro-action-deploy@main
 #      with:
