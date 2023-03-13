@@ -17,7 +17,10 @@ inputs:
     description: 'ResourceInstance name in the management api'
   resourceInstance_values:
     description: 'list of json files to be downloaded from resourceInstance values separated by commas'
-
+  github_token:
+    description: 'github_token'
+    required: false
+    default: ${{ github.token }}    
 
 runs:
   using: "composite"
@@ -32,10 +35,10 @@ runs:
       with:
         resourceInstance:  ${{ inputs.resourceInstance }}
         resourceInstance_values: ${{ inputs.resourceInstance_values }}
-        github_token: ${{ secrets.GITHUB_TOKEN }}"
+        github_token: ${{ inputs.github_token  }}"
         namespace: ${{ inputs.namespace }}
         kube_config: ${{ env.ACTIVE_KUBE_CONFIG }}    
-         
+
 #    - name: Deploy Application
 #      uses: Infoglobo/valor-pro-action-deploy@main
 #      with:
