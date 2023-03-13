@@ -15,7 +15,7 @@ inputs:
     required: true
   resourceInstance:
     description: 'ResourceInstance name in the management api'
-  resourceInstance3_values:
+  resourceInstance_values:
     description: 'list of json files to be downloaded from resourceInstance values separated by commas'
 
 
