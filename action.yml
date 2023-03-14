@@ -57,9 +57,9 @@ runs:
         namespace: ${{ inputs.namespace }}
    
 
-#    - name: Deploy Application
-#      uses: Infoglobo/valor-pro-action-deploy@main
-#      with:
-#        kube_config: ${{ env.ACTIVE_KUBE_CONFIG }}
-#        slack_webhook_url: ${{ secrets.VALOR_PRO_SLACK_WEBHOOK_URL }}
-#        namespace: ${{ inputs.namespace }}
+    - name: Deploy Application
+      uses: Infoglobo/valor-pro-action-deploy@main
+      with:
+        kube_config: ${{ env.ACTIVE_KUBE_CONFIG }}
+        slack_webhook_url: ${{ secrets.VALOR_PRO_SLACK_WEBHOOK_URL }}
+        namespace: ${{ inputs.namespace }}
