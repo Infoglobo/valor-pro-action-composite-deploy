@@ -61,7 +61,7 @@ runs:
    
 
     - name: Deploy Application
-      uses: Infoglobo/valor-pro-action-deploy@master
+      uses: Infoglobo/valor-pro-deploy-action@master
       with:
         kube_config: ${{ inputs.kube_config }}
         slack_webhook_url: ${{ inputs.slack_webhook_url  }}
