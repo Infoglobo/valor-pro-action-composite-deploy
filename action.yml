@@ -21,6 +21,9 @@ inputs:
     description: 'github_token'
     required: true
     default: ${{ github.token }}    
+  slack_webhook_url:
+    description: 'slack_webhook_url'
+    required: false
 
 runs:
   using: "composite"
@@ -60,6 +63,6 @@ runs:
     - name: Deploy Application
       uses: Infoglobo/valor-pro-action-deploy@main
       with:
-        kube_config: ${{ env.ACTIVE_KUBE_CONFIG }}
-        slack_webhook_url: ${{ secrets.VALOR_PRO_SLACK_WEBHOOK_URL }}
+        kube_config: ${{ inputs.kube_config }}
+        slack_webhook_url: ${{ inputs.slack_webhook_url  }}
         namespace: ${{ inputs.namespace }}
